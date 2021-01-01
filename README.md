@@ -39,3 +39,9 @@ nodemon index.js
 ```npm
 npm i --save pug
 ```
+
+## Instalar o body-parser
+
+```npm
+npm i --save body-parser
+```
