@@ -49,3 +49,7 @@ npm i --save body-parser
 ## Baixar Bootstrap
 
 [bootstrap](https://getbootstrap.com/)
+
+## Chart.js
+
+[chart.js](https://www.chartjs.org/)
