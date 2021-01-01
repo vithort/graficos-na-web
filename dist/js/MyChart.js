@@ -5,6 +5,7 @@ window.onload = () => {
 class MyChart {
   constructor() {
     this.iniciaElementos();
+    this.carregaDados().then(() => this.render());
   }
 
   iniciaElementos() {
@@ -12,6 +13,7 @@ class MyChart {
     this.cadastrar.addEventListener('click', () => {
       this.cadastrarCliente();
     });
+    this.chartSexoElement = document.querySelector('#sexoChart');
   }
 
   cadastrarCliente() {
@@ -31,4 +33,24 @@ class MyChart {
         alert('oops, something went wrong!', error);
       });
   }
+
+  carregaDados() {
+    return axios
+      .get('/all')
+      .then((response) => {
+        this.prepararDados(response.data);
+      })
+      .catch((error) => {
+        alert('oops, something went wrong!', error);
+      });
+  }
+
+  prepararDados(dados) {
+    this.dadosSexo = [
+      dados.filter((dado) => dado.sexo == 1).lenght,
+      dados.filter((dado) => dado.sexo == 2).lenght,
+    ];
+  }
+
+  render() {}
 }
