@@ -11,9 +11,12 @@ class MyChart {
   iniciaElementos() {
     this.cadastrar = document.querySelector('#cadastrar');
     this.cadastrar.addEventListener('click', () => {
-      this.cadastrarCliente();
+      this.cadastrarCliente()
+        .then(() => this.carregaDados())
+        .then(() => this.render());
     });
     this.chartSexoElement = document.querySelector('#sexoChart');
+    this.chartSexo = this.criarChartSexo();
   }
 
   cadastrarCliente() {
@@ -24,7 +27,7 @@ class MyChart {
       sexo: sexo.dataset.value,
       data: new Date().toISOString(),
     };
-    axios
+    return axios
       .post('/save', dados)
       .then((response) => {
         console.log(response);
@@ -46,11 +49,49 @@ class MyChart {
   }
 
   prepararDados(dados) {
+    // console.log(dados);
     this.dadosSexo = [
-      dados.filter((dado) => dado.sexo == 1).lenght,
-      dados.filter((dado) => dado.sexo == 2).lenght,
+      dados.filter((dado) => dado.sexo == 1).length,
+      dados.filter((dado) => dado.sexo == 2).length,
     ];
   }
 
-  render() {}
+  render() {
+    this.chartSexo.data.datasets[0].data = this.dadosSexo;
+    this.chartSexo.update();
+  }
+
+  criarChartSexo() {
+    return new Chart(this.chartSexoElement, {
+      type: 'bar',
+      data: {
+        labels: ['Masculino', 'Feminino'],
+        datasets: [
+          {
+            label: 'Total',
+            data: [],
+            backgroundColor: ['rgba(29, 0, 207, 0.7', 'rgba(255, 0, 0, 0.7)'],
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+        title: {
+          display: true,
+          text: 'Total por Sexo',
+        },
+        legend: {
+          display: false,
+        },
+      },
+    });
+  }
 }
