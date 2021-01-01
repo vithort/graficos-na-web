@@ -1,0 +1,24 @@
+{
+  "name": "graficos-na-web",
+  "version": "1.0.0",
+  "description": "Aplicações web na prática com Javascript e Node.js: Gráficos na Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vithort/graficos-na-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vithort/graficos-na-web/issues"
+  },
+  "homepage": "https://github.com/vithort/graficos-na-web#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.15",
+    "mysql": "^2.18.1"
+  }
+}
