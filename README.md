@@ -29,3 +29,13 @@ nodemon index.js
 ## Sobre o Express
 
 [Express](http://expressjs.com)
+
+## Sobre o Pug
+
+[Pug](https://pugjs.org)
+
+## Instalar o Pug
+
+```npm
+npm i --save pug
+```
